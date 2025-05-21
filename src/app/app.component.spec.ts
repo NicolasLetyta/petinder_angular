@@ -20,10 +20,11 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Petinder');
   });
 
-  it('should render title', () => {
+  it('should render layout', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Petinder');
+    expect(compiled.querySelector('app-layout')?.ATTRIBUTE_NODE).toContain('Petinder');
   });
+
 });
