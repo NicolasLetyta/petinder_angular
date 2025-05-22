@@ -29,46 +29,11 @@
     <div class="col-md-3">
       <div class="gallery-detail">
 
-        <section class="tiny-dialog">
-          <h3>Add your pet!</h3>
-
-        <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
-
-          <div class="form-group">
-            <label for="input-id"> Id: </label>
-            <input id="input-id" class="form-control" type="number" formControlName="id" />
-          </div>
-
-            <div class="form-group">
-          <label for="input-name"> Name: </label>
-          <input id="input-name" class="form-control" type="text" formControlName="name" />
-            </div>
-
-            <div class="form-group">
-          <label for="input-kind"> Kind: </label>
-          <input id="input-kind" class="form-control" type="text" formControlName="kind" />
-            </div>
-
-          <div class="form-group">
-            <label for="input-image"> Image url: </label>
-            <input id="input-image" class="form-control" type="text" formControlName="image" />
-          </div>
-
-            <div class="form-group">
-          <label for="input-profileText"> Profile text: </label>
-          <input id="input-profileText" class="form-control" type="text" formControlName="profileText" />
-            </div>
-
-          <div class="form-group">
-            <label for="input-popularity"> Popularity: </label>
-            <input id="input-popularity" class="form-control" type="number" formControlName="popularity" />
-          </div>
-
-          <p>Complete the form to enable button.</p>
-          <button type="submit" [disabled]="!petForm.valid">Submit</button>
-
-        </form>
-        </section>
+        <app-pet-profile-form (petsChanged)="refreshPets()" ></app-pet-profile-form>
+<!--   When petsChanged (marked with @Output) in app-pet-profile-form emits an event, pets$ (marked with input)
+   listens in parent component. petsCanged in child component is then bound to refreshpets() in parent component
+   eacht time an output is emitted, rereshpets() is called (?)
+   what about multiple inputs and outputs??-->
 
         <section class="tiny-dialog">
           <h3>Find your pet</h3>
