@@ -41,5 +41,4 @@ export class ProfileGalleryComponent{
     return this.petForm
   }
 
-
 }
