@@ -10,7 +10,7 @@ export class FooterComponent {
   private _year: number;
 
   constructor() {
-    this._year = Date.now();
+    this._year = new Date().getFullYear();
   }
 
   get year(): number {

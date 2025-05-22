@@ -17,17 +17,16 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have as year the corrent year', () => {
+  it('should have as year the current year', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     const footer = fixture.componentInstance;
-    expect(footer.year).toEqual(Date.now());
+    console.log(footer.year);
+    expect(footer.year).toEqual(new Date().getFullYear());
   });
 
-  
+
 });
