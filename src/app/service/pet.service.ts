@@ -12,9 +12,8 @@ import {FormGroup} from '@angular/forms';
   providedIn: 'root'
 })
 export class PetService {
-  private endPoint: string;
+  private readonly endPoint: string;
   readonly #httpClient= inject(HttpClient);
-
 
   constructor() {
     this.endPoint = environment.backendUrl+'/pets';
@@ -26,6 +25,10 @@ export class PetService {
       // sort() is equivalent to comparators in java localcompare is specific to strings and can be configured (eg case sensitivity?)
       // if values that can be subtracted are compared => just subtract them if the result is negative, the second argument goes first a before b
     )
+  }
+
+  getPetByName(petName: string): Observable<Pet> {
+    return this.#httpClient.get<Pet>(this.endPoint+`/${petName}`)
   }
 
   addPet (pet: Pet): Observable<Pet> {

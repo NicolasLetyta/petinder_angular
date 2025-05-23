@@ -5,10 +5,11 @@ import {AsyncPipe} from '@angular/common';
 import {NameFilterPipe} from '../pipes/name-filter.pipe';
 import {PetProfileFormComponent} from './pet-profile-form/pet-profile-form.component';
 import {FormsModule} from '@angular/forms';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-profile-gallery',
-  imports: [AsyncPipe, NameFilterPipe, PetProfileFormComponent, FormsModule],
+  imports: [AsyncPipe, NameFilterPipe, PetProfileFormComponent, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './profile-gallery.component.html',
   styleUrl: './profile-gallery.component.css'
 })

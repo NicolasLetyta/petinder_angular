@@ -32,7 +32,7 @@
         <app-pet-profile-form (petsChanged)="refreshPets()" ></app-pet-profile-form>
 <!--   When petsChanged (marked with @Output) in app-pet-profile-form emits an event, pets$ (marked with input)
    listens in parent component. petsCanged in child component is then bound to refreshpets() in parent component
-   eacht time an output is emitted, rereshpets() is called (?)
+   eacht time an output is emitted, refreshpets() is called (?)
    what about multiple inputs and outputs??-->
 
         <section class="tiny-dialog">
@@ -51,6 +51,13 @@
         <section id="petProfile" class="tiny-dialog fader">
           <h3>{{ selectedPet.name }}</h3>
           <p>{{selectedPet.profileText}}</p>
+          <div class="dialog-centered">
+            <a type="button"
+               [routerLink]="['/setup-date/',selectedPet.name]" routerLinkActive="active"
+               class="btn btn-primary btn-lg dialog-centered">
+              Setup date
+            </a>
+          </div>
         </section>
         }
 
