@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {PetService} from '../../service/pet.service';
 import {ActivatedRoute, RouterLink, RouterLinkActive} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Pet} from '../../model/Pet';
+import {PetResponse} from '../../model/PetResponse';
 import {AsyncPipe} from '@angular/common';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class SetupDateComponent implements OnInit{
   readonly #petService = inject(PetService)
 
   selectedPetName: string|null
-  selectedPet: Observable<Pet>
+  selectedPet: Observable<PetResponse>
 
   dateForm = this.#formBuilder.nonNullable.group({
     name: this.#formBuilder.nonNullable.control('', Validators.required),
@@ -36,8 +36,12 @@ export class SetupDateComponent implements OnInit{
   // GIVES ME ALL THE INFO I NEED TO DEBUG THE GET REQUEST!!!
   ngOnInit() {
     this.selectedPetName = this.route.snapshot.paramMap.get('name')
-    this.selectedPet = this.#petService.getPetByName(this.selectedPetName || '')
-    console.log(this.selectedPetName)
+    if(this.selectedPetName){
+      this.selectedPet = this.#petService.getPetByName(this.selectedPetName)
+      console.log(this.selectedPetName)
+    }else {
+      console.error("selectedPetName is empty")
+    }
   }
 
   //can this method be called anything? What if I have 2 forms on the page? -> i would need 2 onSubmit methods
@@ -46,5 +50,4 @@ export class SetupDateComponent implements OnInit{
     // logic for setting up a date!!
     console.log("Button was pressed, logic for date inc>")
   }
-
 }

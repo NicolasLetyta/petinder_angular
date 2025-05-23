@@ -1,5 +1,5 @@
 
-export interface Pet {
+export interface PetResponse {
   id: number;
   name: string;
   kind: string;
