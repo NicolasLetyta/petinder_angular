@@ -17,20 +17,20 @@ export class ProfileGalleryComponent{
   readonly petService= inject(PetService);
 
   galleryPets$ = this.petService.getPets();
-  selectedPet: PetResponse
+  selectedPet: PetResponse | null
   searchText: string = ''
 
   refreshPets(): void {
     this.galleryPets$ = this.petService.getPets()
   }
 
-  isPetSelected() {
-    return this.selectedPet != null;
-  }
-
   selectPet(pet: PetResponse) {
     this.selectedPet = pet
     console.log(this.selectedPet);
+  }
+
+  clearSelectedPet() {
+    this.selectedPet = null;
   }
 
   constructor() {

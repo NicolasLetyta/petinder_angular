@@ -17,15 +17,13 @@ import {Observable} from 'rxjs';
 export class PetProfileFormComponent {
   readonly petService= inject(PetService);
   readonly #formBuilder = inject(FormBuilder)
-  @Output() petsChanged = new EventEmitter();
+  @Output() addPetEvent = new EventEmitter();
 
   petForm = this.#formBuilder.nonNullable.group({
-    //id: this.#formBuilder.nonNullable.control('', Validators.required), //not needed -> dto is used for input and output
     name: this.#formBuilder.nonNullable.control('', Validators.required),
     kind: this.#formBuilder.nonNullable.control('', Validators.required),
     image: this.#formBuilder.nonNullable.control('', Validators.required),
     profileText: this.#formBuilder.nonNullable.control('', Validators.required),
-    //popularity: this.#formBuilder.nonNullable.control('', Validators.required)
   })
 
   onSubmit() {
@@ -42,7 +40,7 @@ export class PetProfileFormComponent {
       }
 
       this.petService.addPet(petInput).subscribe({ next: () => {
-          this.petsChanged.emit() //next: is manditory, only after subscription do we emit the change
+          this.addPetEvent.emit() //next: is manditory, only after subscription do we emit the change
         }
       })
     }else {

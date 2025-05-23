@@ -40,11 +40,14 @@
           </div>
         </section>
 
-        @if (isPetSelected()){
-        <app-profile-details [pet]="selectedPet"></app-profile-details>
+        @if (selectedPet){
+        <app-profile-details
+          (deletePetEvent)="refreshPets(); clearSelectedPet()"
+          [pet]="selectedPet">
+        </app-profile-details>
         }
 
-        <app-pet-profile-form (petsChanged)="refreshPets()" ></app-pet-profile-form>
+        <app-pet-profile-form (addPetEvent)="refreshPets()" ></app-pet-profile-form>
         <!--   When petsChanged (marked with @Output) in app-pet-profile-form emits an event, pets$ (marked with input)
            listens in parent component. petsCanged in child component is then bound to refreshpets() in parent component
            eacht time an output is emitted, refreshpets() is called (?)

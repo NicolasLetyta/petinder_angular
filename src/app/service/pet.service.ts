@@ -32,4 +32,10 @@ export class PetService {
     return this.#httpClient.post<PetResponse>(this.endPoint, pet)
   }
 
+  deletePet(petId: number) {
+    const response = this.#httpClient.delete(this.endPoint+`/${petId}`)
+    console.log(response)
+    return response
+  }
+
 }
